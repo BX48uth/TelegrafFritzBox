@@ -1,4 +1,4 @@
-#!/opt/bin/python3
+#!/usr/bin/python3
 
 # This script is for exporting FritzBox metrics into Telegraf in InfluxDB format.
 # https://github.com/Schmidsfeld/TelegrafFritzBox

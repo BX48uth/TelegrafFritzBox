@@ -125,11 +125,14 @@ else:
 
 # Get FritzBox data so it isn't requested mutiple times
 deviceInfo = readfritz('DeviceInfo1', 'GetInfo')
+wanInfo = readfritz('WANCommonIFC1', 'GetCommonLinkProperties')
+connectionType = extractvar(wanInfo, 'NewWANAccessType', False, True)
+if connectionType == 'NewWANAccessType="DSL"':
+    IS_DSL = True
 if IS_DSL:
     connectionInfo = readfritz('WANPPPConnection1', 'GetInfo')
 else:
     connectionInfo = readfritz('WANIPConnection1', 'GetInfo')
-wanInfo = readfritz('WANCommonIFC1', 'GetCommonLinkProperties')
 trafficInfo = readfritz('WANCommonIFC1', 'GetAddonInfos')
 dslInfo = readfritz('WANDSLInterfaceConfig1', 'GetInfo')
 dslError = readfritz('WANDSLInterfaceConfig1', 'GetStatisticsTotal')
@@ -161,7 +164,6 @@ upTime = extractvar(deviceInfo, 'NewUpTime', True)
 connectionTime = extractvar(connectionInfo, 'NewUptime', True, False, 'ConnectionTime')
 connectionStatus = extractvar(connectionInfo, 'NewConnectionStatus', False)
 connectionError = extractvar(connectionInfo, 'NewLastConnectionError', False, True, 'LastError')
-connectionType = extractvar(wanInfo, 'NewWANAccessType', False, True)
 maxDownRate = extractvar(wanInfo, 'NewLayer1DownstreamMaxBitRate', True)
 maxUpRate = extractvar(wanInfo, 'NewLayer1UpstreamMaxBitRate', True)
 

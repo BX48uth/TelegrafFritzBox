@@ -9,4 +9,5 @@ RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y python3 python3-pip && \
 	pip3 install fritzconnection && \
-	chmod +x ./telegrafFritzBox.py
+	chmod +x ./telegrafFritzBox.py && \
+	rm -rf /var/lib/apt/lists/*

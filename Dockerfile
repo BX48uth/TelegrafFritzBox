@@ -1,4 +1,4 @@
-FROM telegraf:1.24.3
+FROM telegraf:1.24.4
 LABEL description="Based on telegraf, this image adds python3 and a telegraf input script to feed fritbox metrics into an influxdb"
 
 WORKDIR /usr/local/bin

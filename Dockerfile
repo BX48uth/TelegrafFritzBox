@@ -1,4 +1,4 @@
-FROM telegraf:1.27.2
+FROM telegraf:1.28.2
 LABEL description="Based on telegraf, this image adds python3 and a telegraf input script to feed fritbox metrics into an influxdb"
 
 WORKDIR /usr/local/bin
@@ -7,7 +7,7 @@ COPY telegrafFritzBox.py .
 
 RUN apt-get update && \
 	apt-get upgrade -y && \
-	apt-get install -y python3 python3-pip #&& \
-#	pip3 install fritzconnection && \
-#	chmod +x ./telegrafFritzBox.py && \
-#	rm -rf /var/lib/apt/lists/*
+	apt-get install -y python3 python3-pip && \
+	pip3 install --break-system fritzconnection && \
+	chmod +x ./telegrafFritzBox.py && \
+	rm -rf /var/lib/apt/lists/*
